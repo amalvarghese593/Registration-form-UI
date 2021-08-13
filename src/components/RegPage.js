@@ -4,7 +4,7 @@ import img1 from "../images/img-01.png";
 import img2 from "../images/img-02.png";
 import logo from "../images/logo.png";
 
-export const RegPage = () => {
+export const RegPage = ({ who }) => {
   return (
     <div className="reg-wrapper">
       <div className="reg-container">
@@ -18,29 +18,40 @@ export const RegPage = () => {
             <input type="email" placeholder=" " className="name-input" />
             <label className="name-label">Email</label>
           </div>
-          <div className="input-container">
-            <input type="text" placeholder=" " className="name-input" />
-            <label className="name-label">Phone Number</label>
-          </div>
-          <div className="input-container">
-            <input type="password" placeholder=" " className="name-input" />
-            <label className="name-label">Password</label>
-          </div>
-          <div className="input-container">
-            <input type="password" placeholder=" " className="name-input" />
-            <label className="name-label">Add Skills</label>
-          </div>
-          <div className="input-container">
-            <input type="password" placeholder=" " className="name-input" />
-            <label className="name-label">Add Locations</label>
-          </div>
-          <div className="signup-btn">
-            <button class="signup-button">Sign Up</button>
-          </div>
+          {(who === "Recruiter" || who === "JobSeeker") && (
+            <>
+              <div className="input-container">
+                <input type="text" placeholder=" " className="name-input" />
+                <label className="name-label">Phone Number</label>
+              </div>
+              <div className="input-container">
+                <input type="password" placeholder=" " className="name-input" />
+                <label className="name-label">Password</label>
+              </div>
+              <div className="input-container">
+                <input type="password" placeholder=" " className="name-input" />
+                <label className="name-label">Add Skills</label>
+              </div>
+              <div className="input-container">
+                <input type="password" placeholder=" " className="name-input" />
+                <label className="name-label">Add Locations</label>
+              </div>
+              <div className="signup-btn">
+                <button class="signup-button">Sign Up</button>
+              </div>
+            </>
+          )}
+          {who === "Campus" && (
+            <>
+              <div className="signup-btn">
+                <button class="signup-button">Submit</button>
+              </div>
+            </>
+          )}
         </div>
         <div className="image-container">
           <img className="reg-bg-image" src={img2} alt="image not found" />
-          <h1 className="reg-title">Register as Recruiter!</h1>
+          <h1 className="reg-title">Register as {who}!</h1>
         </div>
       </div>
     </div>

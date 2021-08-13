@@ -136,7 +136,7 @@
   width: 350px;
   /* margin-left: 52px; */
   height: 60px;
-  border-radius: 10px;
+  border-radius: 30px;
   font-size: 20px;
   font-weight: 700;
   font-family: "Lato", sans-serif;
@@ -193,7 +193,7 @@
   }
   .input-container,
   .signup-button {
-    width: 350px;
+    width: 300px;
   }
   .image-container {
     margin-top: 20px;
