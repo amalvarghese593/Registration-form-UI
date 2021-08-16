@@ -91,11 +91,13 @@
   font-size: 35px;
   font-weight: 650;
 }
+
 .input-container {
   /* border: 1px solid blue; */
   width: 350px;
   /* margin-left: 52px; */
   position: relative;
+  margin-bottom: 30px;
 }
 .name-input {
   width: 100%;
@@ -128,6 +130,11 @@
 }
 .input-container input:focus {
   border: 2px solid #1a73e8;
+}
+.errors {
+  position: absolute;
+  color: red;
+  margin-bottom: 20px;
 }
 .signup-button {
   outline: none;
