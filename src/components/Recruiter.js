@@ -49,6 +49,14 @@ export const Recruiter = () => {
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
   console.log("Here are the errors: ", formik.errors);
+  const labelObj = [
+    { labelValue1: "Name", inputType1: "text" },
+    { labelValue1: "Email", inputType1: "email" },
+    { labelValue1: "Phone Number", inputType1: "text" },
+    { labelValue1: "Password", inputType1: "password" },
+    { labelValue1: "Add Skills", inputType1: "text" },
+    { labelValue1: "Add Locations", inputType1: "text" },
+  ];
 
   return (
     <div className="reg-wrapper">
@@ -56,62 +64,19 @@ export const Recruiter = () => {
         <div className="signup-container">
           <img className="logo-image" src={logo} alt="image not found" />
           <form onSubmit={formik.handleSubmit}>
-            <InputComponent
-              labelValue="Name"
-              inputType="text"
-              formikErr={formik.errors}
-              formikVal={formik.values}
-              formikTouch={formik.touched}
-              formikHandleChange={formik.handleChange}
-              formikHandleBlur={formik.handleBlur}
-            />
-
-            <InputComponent
-              labelValue="Email"
-              inputType="email"
-              formikErr={formik.errors}
-              formikVal={formik.values}
-              formikTouch={formik.touched}
-              formikHandleChange={formik.handleChange}
-              formikHandleBlur={formik.handleBlur}
-            />
-
-            <InputComponent
-              labelValue="Phone Number"
-              inputType="text"
-              formikErr={formik.errors}
-              formikVal={formik.values}
-              formikTouch={formik.touched}
-              formikHandleChange={formik.handleChange}
-              formikHandleBlur={formik.handleBlur}
-            />
-            <InputComponent
-              labelValue="Password"
-              inputType="password"
-              formikErr={formik.errors}
-              formikVal={formik.values}
-              formikTouch={formik.touched}
-              formikHandleChange={formik.handleChange}
-              formikHandleBlur={formik.handleBlur}
-            />
-            <InputComponent
-              labelValue="Add Skills"
-              inputType="text"
-              formikErr={formik.errors}
-              formikVal={formik.values}
-              formikTouch={formik.touched}
-              formikHandleChange={formik.handleChange}
-              formikHandleBlur={formik.handleBlur}
-            />
-            <InputComponent
-              labelValue="Add Locations"
-              inputType="text"
-              formikErr={formik.errors}
-              formikVal={formik.values}
-              formikTouch={formik.touched}
-              formikHandleChange={formik.handleChange}
-              formikHandleBlur={formik.handleBlur}
-            />
+            {labelObj.map((item) => {
+              return (
+                <InputComponent
+                  labelValue={item.labelValue1}
+                  inputType={item.inputType1}
+                  formikErr={formik.errors}
+                  formikVal={formik.values}
+                  formikTouch={formik.touched}
+                  formikHandleChange={formik.handleChange}
+                  formikHandleBlur={formik.handleBlur}
+                />
+              );
+            })}
             <div className="signup-btn">
               <button class="signup-button" type="submit">
                 Sign Up
