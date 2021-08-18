@@ -1,62 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
 import "./regpage.css";
 import img2 from "../images/img-02.png";
+import img4 from "../images/img-04.png";
 import logo from "../images/logo.png";
+import { locations } from "./locations";
+import { InputComponent } from "./InputComponent";
 
 export const Recruiter = () => {
+  // const [skills, setSkills] = useState([]);
+
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https:webpipl-api.webpipl.com/api/v1/skills/"
+  //     );
+  //     console.log("here is response: ", response);
+  //     setSkills(response.data.result);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
   const initialValues = {
-    Name: "",
-    Email: "",
-    Phone_Number: "",
-    Password: "",
+    name: "",
+    email: "",
+    phonenumber: "",
+    password: "",
   };
 
   const onSubmit = (values) => {
     console.log("Here is form data: ", values);
   };
 
-  const validate = (values) => {
-    let errors = {};
-    if (!values.Name) {
-      errors.Name = "* This field is required !";
-    }
-    if (!values.Email) {
-      errors.Email = "* This field is required !";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.Email)
-    ) {
-      errors.Email = "* Invalid email format";
-    }
-    if (!values.Phone_Number) {
-      errors.Phone_Number = "* This field is required !";
-    }
-    if (!values.Password) {
-      errors.Password = "* This field is required !";
-    }
-    return errors;
-  };
+  const validationSchema = Yup.object({
+    name: Yup.string().required("* This field is required !"),
+    email: Yup.string()
+      .email("* Invalid email format !")
+      .required("* This field is required !"),
+    phonenumber: Yup.string().required("* This field is required !"),
+    password: Yup.string().required("* This field is required !"),
+  });
 
-  const formik = useFormik({ initialValues, onSubmit, validate });
+  const formik = useFormik({ initialValues, onSubmit, validationSchema });
   console.log("Here are the errors: ", formik.errors);
-
-  // const initialState = {
-  //   Name: "",
-  //   Email: "",
-  //   Phone_Number: "",
-  //   Password: "",
-  // };
-  // const [formData, setFormData] = useState(initialState);
-
-  // const handleChange = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  //   console.log("state changed: ", formData);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Here is form data: ", formData);
-  // };
 
   return (
     <div className="reg-wrapper">
@@ -64,74 +56,62 @@ export const Recruiter = () => {
         <div className="signup-container">
           <img className="logo-image" src={logo} alt="image not found" />
           <form onSubmit={formik.handleSubmit}>
-            <div className="input-container">
-              <input
-                type="text"
-                placeholder=" "
-                className="name-input"
-                name="Name"
-                value={formik.values.Name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              <label className="name-label">Name</label>
-              {formik.touched.Name && formik.errors.Name ? (
-                <div className="errors">{formik.errors.Name}</div>
-              ) : null}
-            </div>
-            <div className="input-container">
-              <input
-                type="email"
-                placeholder=" "
-                className="name-input"
-                name="Email"
-                value={formik.values.Email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              <label className="name-label">Email</label>
-              {formik.touched.Email && formik.errors.Email ? (
-                <div className="errors">{formik.errors.Email}</div>
-              ) : null}
-            </div>
-            <div className="input-container">
-              <input
-                type="text"
-                placeholder=" "
-                className="name-input"
-                name="Phone_Number"
-                value={formik.values.Phone_Number}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              <label className="name-label">Phone Number</label>
-              {formik.touched.Phone_Number && formik.errors.Phone_Number ? (
-                <div className="errors">{formik.errors.Phone_Number}</div>
-              ) : null}
-            </div>
-            <div className="input-container">
-              <input
-                type="password"
-                placeholder=" "
-                name="Password"
-                value={formik.values.Password}
-                className="name-input"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              <label className="name-label">Password</label>
-              {formik.touched.Password && formik.errors.Password ? (
-                <div className="errors">{formik.errors.Password}</div>
-              ) : null}
-            </div>
-            <div className="input-container">
-              <input type="password" placeholder=" " className="name-input" />
-              <label className="name-label">Add Skills</label>
-            </div>
-            <div className="input-container">
-              <input type="password" placeholder=" " className="name-input" />
-              <label className="name-label">Add Locations</label>
-            </div>
+            <InputComponent
+              labelValue="Name"
+              inputType="text"
+              formikErr={formik.errors}
+              formikVal={formik.values}
+              formikTouch={formik.touched}
+              formikHandleChange={formik.handleChange}
+              formikHandleBlur={formik.handleBlur}
+            />
+
+            <InputComponent
+              labelValue="Email"
+              inputType="email"
+              formikErr={formik.errors}
+              formikVal={formik.values}
+              formikTouch={formik.touched}
+              formikHandleChange={formik.handleChange}
+              formikHandleBlur={formik.handleBlur}
+            />
+
+            <InputComponent
+              labelValue="Phone Number"
+              inputType="text"
+              formikErr={formik.errors}
+              formikVal={formik.values}
+              formikTouch={formik.touched}
+              formikHandleChange={formik.handleChange}
+              formikHandleBlur={formik.handleBlur}
+            />
+            <InputComponent
+              labelValue="Password"
+              inputType="password"
+              formikErr={formik.errors}
+              formikVal={formik.values}
+              formikTouch={formik.touched}
+              formikHandleChange={formik.handleChange}
+              formikHandleBlur={formik.handleBlur}
+            />
+            <InputComponent
+              labelValue="Add Skills"
+              inputType="text"
+              formikErr={formik.errors}
+              formikVal={formik.values}
+              formikTouch={formik.touched}
+              formikHandleChange={formik.handleChange}
+              formikHandleBlur={formik.handleBlur}
+            />
+            <InputComponent
+              labelValue="Add Locations"
+              inputType="text"
+              formikErr={formik.errors}
+              formikVal={formik.values}
+              formikTouch={formik.touched}
+              formikHandleChange={formik.handleChange}
+              formikHandleBlur={formik.handleBlur}
+            />
             <div className="signup-btn">
               <button class="signup-button" type="submit">
                 Sign Up
@@ -140,7 +120,7 @@ export const Recruiter = () => {
           </form>
         </div>
         <div className="image-container">
-          <img className="reg-bg-image" src={img2} alt="image not found" />
+          <img className="reg-bg-image" src={img4} alt="image not found" />
           <h1 className="reg-title">Register as Recruiter!</h1>
         </div>
       </div>
