@@ -161,10 +161,7 @@
   }
 }
 
-@media all and (max-width: 750px) {
-}
-
-@media all and (max-width: 700px) {
+@media all and (max-width: 800px) {
   .reg-container {
     height: 100%;
     flex-direction: column-reverse;
@@ -175,61 +172,42 @@
   }
   .signup-container {
     margin-bottom: 50px;
+    width: 100%;
   }
 }
 
-@media all and (max-width: 430px) {
+@media all and (max-width: 500px) {
   .image-container {
     width: 90%;
   }
-  .reg-title {
-    width: 350px;
-    font-size: 31px;
-    top: 40px;
+  .signup-button {
+    width: 120px;
   }
-}
-@media all and (max-width: 372px) {
-  .reg-title {
-    width: 330px;
-    font-size: 28px;
-    top: 35px;
-  }
-}
-@media all and (max-width: 352px) {
-  .reg-title {
-    width: 320px;
-    font-size: 28px;
-  }
-}
-@media all and (max-width: 330px) {
   .reg-title {
     width: 300px;
-    font-size: 27px;
+    font-size: 24px;
+    top: 10px;
+  }
+  .reg-navbar {
+    height: 40px;
+  }
+  .input-container {
+    width: 170px;
+    margin-bottom: 17px;
+  }
+  .name-input {
+    height: 40px;
+  }
+  .reg-bg-image {
+    padding-top: 0;
+  }
+  .signup-container {
+    padding-top: 0%;
   }
 }
 @media all and (max-width: 315px) {
-  .input-container,
-  .signup-button {
-    width: 220px;
-  }
   .reg-title {
-    width: 290px;
-    font-size: 25px;
-  }
-}
-@media all and (max-width: 300px) {
-  .input-container,
-  .signup-button {
-    width: 200px;
-  }
-}
-@media all and (max-width: 290px) {
-  .input-container,
-  .signup-button {
-    width: 190px;
-  }
-  .reg-title {
+    font-size: 22px;
     width: 270px;
-    font-size: 24px;
   }
 }
